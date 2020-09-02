@@ -31,7 +31,7 @@ bench = EntryPoint.Benchmark()
 n_cores = multiprocessing.cpu_count()
 ```
 
-<h5>or specify any number of cores you want to use</h5>
+<h5>or specify any number of cores you want to use, n_cores=4</h5>
 
 ```
 val = 96.50
