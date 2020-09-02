@@ -47,21 +47,25 @@ second_df_start = '02-15-2020'
 
 
 <h5>Simple statistical functions used are count, sum, mean, standard deviation, rolling mean</h5>
+
 ```
 bench.SimpleStatistics(n_cores, rows, first_df_start)
 ```
 
 <h5>utility functions are merge, merge_asof, join, concat, sort, search</h5>
+
 ```
 bench.utilFunctions(val, n_cores, rows, other_df_rows, second_df_start, second_df_start)
 ```
 
 <h5>groupby aggregation function used are sum, count, mean, prod, without loops</h5>
+
 ```
 bench.agg_without_loop(n_cores, rows, first_df_start)
 ```
 
 <h5>groupby aggregation function used are sum, count, mean, prod, with loops</h5>
+
 ```
 bench.agg_with_loops(n_cores, rows, first_df_start)
 ```
