@@ -44,7 +44,7 @@ second_df_start = '02-15-2020'
 
 <h5>start of time series data of second dataset</h5>
 
-
+<br><br><br>
 
 <h5>Simple statistical functions used are count, sum, mean, standard deviation, rolling mean</h5>
 
