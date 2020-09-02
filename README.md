@@ -15,7 +15,6 @@ rows = 375000
 other_df_rows = 375000
 first_df_start = '01-02-2020'
 second_df_start = '02-15-2020'
-# bench = Benchmark()
 bench.SimpleStatistics(n_cores, rows, first_df_start)
 bench.utilFunctions(val, n_cores, rows, other_df_rows, second_df_start, second_df_start)
 bench.agg_without_loop(n_cores, rows, first_df_start)
