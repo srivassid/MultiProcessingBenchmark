@@ -2,7 +2,7 @@
 A benchmarking library to check how does your system fares with all the cores for simple statistical functions, utility
 functions and aggregation functions. 
 
-<h4>Full Function</h4>
+<h4>Full Code</h4>
 
 ```
 from MultiProcessingBenchmark import EntryPoint
