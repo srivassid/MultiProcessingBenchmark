@@ -2,6 +2,26 @@
 A benchmarking library to check how does your system fares with all the cores for simple statistical functions, utility
 functions and aggregation functions. 
 
+<h4>Full Function</h4>
+
+```
+from MultiProcessingBenchmark import EntryPoint
+import multiprocessing
+
+bench = EntryPoint.Benchmark()
+n_cores = multiprocessing.cpu_count()
+val = 96.50
+rows = 375000
+other_df_rows = 375000
+first_df_start = '01-02-2020'
+second_df_start = '02-15-2020'
+# bench = Benchmark()
+bench.SimpleStatistics(n_cores, rows, first_df_start)
+bench.utilFunctions(val, n_cores, rows, other_df_rows, second_df_start, second_df_start)
+bench.agg_without_loop(n_cores, rows, first_df_start)
+bench.agg_with_loops(n_cores, rows, first_df_start)
+```
+<br><br>
 Usage:
 
 ```
