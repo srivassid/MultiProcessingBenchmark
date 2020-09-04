@@ -75,24 +75,6 @@ class PlotTimes():
         ax.legend(["Single Core", "Multi Core"]);
         plt.show()
 
-    def plot_agg_no_loop(self):
-        """Plot agg functions no loop"""
-        self.df_s = pd.read_csv('csv/groupbyAgg/mono_no_loop.csv')
-        self.df_m = pd.read_csv('csv/groupbyAgg/multi_no_loop.csv')
-        # print(self.df_s)
-        # print(self.df_m)
-        self.df = pd.concat([self.df_s, self.df_m], axis=1)
-        # print(self.df.stack().reset_index())
-        self.df = self.df.rename({'level_1':'axis',0:'value'})
-        # print(self.df)
-        ax = self.df.plot(kind='bar', colormap=ListedColormap(sns.color_palette("Accent", 5)))
-        for p in ax.patches:
-            ax.annotate(str(round(p.get_height(), 2)), (p.get_x() * 0.6, p.get_height() * 1.005))
-        plt.title('Time in seconds taken for aggregation without loop, single vs multi core execution')
-        ax.legend(["Single Core", "Multi Core"]);
-        ax.set_xlabel('')
-        plt.show()
-
     def plot_agg_loop(self):
         """Plot agg functions no loop"""
         self.df_s = pd.read_csv('csv/groupbyAggLoop/mono_loop.csv')
@@ -101,10 +83,78 @@ class PlotTimes():
         # print(self.df_m)
         self.df = pd.concat([self.df_s, self.df_m], axis=1)
         self.df = self.df.rename({'level_1': 'axis', 0: 'value'})
-        # print(self.df)
-        ax = self.df.plot(kind='bar', colormap=ListedColormap(sns.color_palette("Accent", 5)))
-        for p in ax.patches:
-            ax.annotate(str(round(p.get_height(), 2)), (p.get_x() * 0.6 , p.get_height() * 1.005))
-        plt.title('Time in seconds taken for aggregation with loop, single vs multi core execution')
-        ax.legend(["Single Core", "Multi Core"]);
+        print(self.df)
+        self.x = np.arange(1)
+        self.width = 0.15
+        fig, ax = plt.subplots()
+        rects1 = ax.bar(self.x - self.width / 2, self.df['agg_s_l'].iloc[0], self.width, label='Single Core',
+                        color='mediumseagreen')
+        rects2 = ax.bar(self.x + self.width / 2, self.df['agg_m_l'].iloc[0], self.width, label='Multi Core',
+                        color='steelblue')
+
+        ax.set_ylabel('Scores')
+        ax.set_title('Scores by group and gender')
+        ax.set_xticks(self.x)
+        self.labels = ['Single Core']
+        ax.set_xticklabels(self.labels)
+        ax.legend()
+
+        def autolabel(rects):
+            """Attach a text label above each bar in *rects*, displaying its height."""
+            for rect in rects:
+                height = rect.get_height()
+                ax.annotate('{}'.format(round(height, 3)),
+                            xy=(rect.get_x() + rect.get_width() / 2, height),
+                            xytext=(0, 3),  # 3 points vertical offset
+                            textcoords="offset points",
+                            ha='center', va='bottom')
+
+        autolabel(rects1)
+        autolabel(rects2)
+
+        fig.tight_layout()
+        plt.title('Time in seconds taken for aggs with loop, single vs multi core execution')
+        plt.show()
+
+    def plot_agg_no_loop(self):
+        self.df_s = pd.read_csv('csv/groupbyAgg/mono_no_loop.csv')
+        self.df_m = pd.read_csv('csv/groupbyAgg/multi_no_loop.csv')
+        # print(self.df_s)
+        # print(self.df_m)
+        self.df = pd.concat([self.df_s, self.df_m], axis=1)
+        # print(self.df.stack().reset_index())
+        self.df = self.df.rename({'level_1': 'axis', 0: 'value'})
+        print(self.df)
+        print(list(self.df[['agg_s']].values.tolist()))
+        self.x = np.arange(1)
+        self.width = 0.15
+        fig, ax = plt.subplots()
+        rects1 = ax.bar(self.x - self.width / 2, self.df['agg_s'].iloc[0], self.width, label='Single Core',
+                        color='mediumseagreen')
+        rects2 = ax.bar(self.x + self.width / 2, self.df['agg_m'].iloc[0], self.width, label='Multi Core',
+                        color='steelblue')
+
+        ax.set_ylabel('Scores')
+        ax.set_title('Scores by group and gender')
+        ax.set_xticks(self.x)
+        self.labels = ['Single Core']
+        ax.set_xticklabels(self.labels)
+        ax.legend()
+
+        def autolabel(rects):
+            """Attach a text label above each bar in *rects*, displaying its height."""
+            for rect in rects:
+                height = rect.get_height()
+                ax.annotate('{}'.format(round(height, 3)),
+                            xy=(rect.get_x() + rect.get_width() / 2, height),
+                            xytext=(0, 3),  # 3 points vertical offset
+                            textcoords="offset points",
+                            ha='center', va='bottom')
+
+        autolabel(rects1)
+        autolabel(rects2)
+
+        fig.tight_layout()
+        plt.title('Time in seconds taken for aggs without loop, single vs multi core execution')
+
         plt.show()
