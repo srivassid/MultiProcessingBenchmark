@@ -1,6 +1,6 @@
 # MultiProcessingBenchmark
 
-A blog with explanation of the functions: https://pythonmultiproc.blogspot.com/
+A blog with explanation of the functions: https://pythonmultiproc.blogspot.com/2020/09/benchmarking-multi-core-capabilities.html
 
 A benchmarking library to check how does your system fares with all the cores for simple statistical functions, utility
 functions and aggregation functions. 
